@@ -212,9 +212,13 @@ function countdown() {
 
 function compartir() {
   const url = window.location.href;
-  const mensaje = encodeURIComponent(`¡No te pierdas mi fiesta de cumpleaños en Natatotio UP!, ingresá acá: ${url}`);
+  const nombre = nombreInput.value;
+  const fecha = fechaInput.value;
+  const mensaje = encodeURIComponent(`¡No te pierdas la fiesta de cumpleaños de ${nombre} en Natatotio UP el ${fecha}!, ingresá acá: ${url}`);
   window.open(`https://wa.me/?text=${mensaje}`);
 }
+
+  
 
 function establecerDatosDesdeUrl() {
   const urlParams = new URLSearchParams(window.location.search);
