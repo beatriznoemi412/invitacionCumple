@@ -177,10 +177,10 @@ function countdown() {
       });
   
 */
-function countdown() {
-  const nombreInput = document.getElementById('nombre');
+const nombreInput = document.getElementById('nombre');
   const fechaInput = document.getElementById('fecha');
   const countdownElement = document.getElementById('cuentaRegresiva');
+function countdown() {
 
   const fechaCumple = fechaInput.value;
   const now = new Date();
