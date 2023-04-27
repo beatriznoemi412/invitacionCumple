@@ -32,14 +32,15 @@ function countdown() {
   setTimeout(countdown, 1000);
 }
 
+
 function compartir() {
   const url = window.location.href;
   const nombre = nombreInput.value;
   const fecha = fechaInput.value;
-  const mensaje = encodeURIComponent(`¡No te pierdas la fiesta de cumpleaños de ${encodeURIComponent(nombre)} en Natatotio UP el ${encodeURIComponent(fecha)}!, ingresá acá: ${encodeURIComponent(url)}`);
-  window.open(`whatsapp://send?text=${mensaje}`);
+  const mensaje = `¡No te pierdas la fiesta de cumpleaños de ${nombre} en Natatotio UP el ${fecha}!, ingresá acá: ${url}`;
+  const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(mensaje)}`;
+  window.open(whatsappUrl);
 }
-
 function establecerDatosDesdeUrl() {
   const urlParams = new URLSearchParams(window.location.search);
   const nombre = urlParams.get('nombre');
@@ -93,4 +94,8 @@ confirmPresenceInput.addEventListener("click", function() {
     confirmPresenceText.innerHTML = "Confirmá presencia";
   }
 });
- 
+
+
+
+
+
