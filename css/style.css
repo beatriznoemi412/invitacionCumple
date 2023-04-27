@@ -1,20 +1,32 @@
+*{margin: 0;
+  padding: 0;
+  box-sizing: content-box;
+}
+@media (max-width: 600px) {
+.logo{
+  width: 100px;
+  height: 100px;
+  border-radius: 6em;
+}
 .container {
     width: 80%;
     margin: 0 auto;
     text-align: center;
-    background-color: #f2f2f2;
+    background:linear-gradient( #ff925f, #F7DC6F, #FAD7A0  );
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.2);
   }
   
   h1 {
-    font-size: 48px;
-    color: #e60073;
+    font-size: 40px;
+    color: #f1440a;
   }
-  
+  #nombre{
+    text-align: center;
+  }
   p {
-    font-size: 24px;
+    font-size: 22px;
   }
   
   form {
@@ -27,6 +39,8 @@
   
   input[type="text"],
   input[type="date"] {
+    width: 200px;
+    background: #f5500a;
     font-size: 24px;
     padding: 10px;
     margin: 10px;
@@ -34,25 +48,42 @@
     border: none;
     box-shadow: 0 2px 4px rgba(0,0,0,0.2);
   }
+  #nombre{
+    font-family: love;
+    font-size: 25px;
+  }
   
   button {
-    font-size: 24px;
-    padding: 10px 20px;
+    font-size: 20px;
+    height:48px;
+    width: 200px;
     border-radius: 5px;
     border: none;
-    background-color: #e60073;
+    background-color:  #f5500a;
     color: white;
     cursor: pointer;
     box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-    margin-top: 20px;
+    margin-bottom: 20px;
   }
   
   button:hover {
-    background-color: #d1006d;
+    background-color: #f5500a;
   }
-  
-  #cuentaRegresiva {
-    margin-top: 30px;
-    font-size: 36px;
+  #cuentaRegresiva{
+    font-size: 18px;
   }
-  
+  #iframe{
+    border: 0;
+  }
+  .comunicate{
+    margin-bottom: 20px;
+    font-size: 17px;
+    color: rgb(51, 48, 48);
+  }
+  footer{
+    background-color: #f1440a;
+  }
+  .face{
+    width: 35px;
+  }
+}

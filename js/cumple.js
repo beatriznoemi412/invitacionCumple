@@ -80,4 +80,17 @@ document.getElementById('nombre').addEventListener('input', () => {
 });
 document.getElementById('fecha').addEventListener('input', () => {
   sessionStorage.setItem('fecha', document.getElementById('fecha').value);
+})
+
+const confirmPresenceInput = document.getElementById("confirm-presence");
+const confirmPresenceText = document.getElementById("confirm-presence-text");
+confirmPresenceInput.addEventListener("click", function() {
+  if (confirmPresenceInput.checked) {
+    // input está activo, el invitado confirmó su presencia
+    confirmPresenceText.innerHTML = "Confirmado";
+  } else {
+    // input está inactivo, el invitado no confirmó su presencia
+    confirmPresenceText.innerHTML = "Confirmá presencia";
+  }
 });
+ 
