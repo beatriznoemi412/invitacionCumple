@@ -1,4 +1,5 @@
 
+
 const nombreInput = document.getElementById('nombre');
 const fechaInput = document.getElementById('fecha');
 const countdownElement = document.getElementById('cuentaRegresiva');
@@ -31,29 +32,31 @@ function countdown() {
 
   setTimeout(countdown, 1000);
 }
-
-
 function compartir() {
-  const url = window.location.href;
-  const nombre = nombreInput.value;
-  const fecha = fechaInput.value;
-  const mensaje = `¡No te pierdas la fiesta de cumpleaños de ${nombre} en Natatotio UP el ${fecha}!, ingresá acá: ${url}`;
+  const urlParams = new URLSearchParams();
+  urlParams.set('nombre', nombreInput.value);
+  urlParams.set('fecha', fechaInput.value);
+  const url = window.location.href.split('?')[0] + '?' + urlParams.toString();
+  const mensaje = `¡No te pierdas la fiesta de cumpleaños de ${nombreInput.value} en Natatotio UP el ${fechaInput.value}!, ingresá acá: ${url}`;
   const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(mensaje)}`;
   window.open(whatsappUrl);
 }
+
+
 function establecerDatosDesdeUrl() {
   const urlParams = new URLSearchParams(window.location.search);
   const nombre = urlParams.get('nombre');
   const fecha = urlParams.get('fecha');
-  if (nombre) {
-    document.getElementById('nombre').value = decodeURIComponent(nombre);
+  if (nombreInput && nombre) {
+    nombreInput.value = decodeURIComponent(nombre);
   }
-  if (fecha) {
-    document.getElementById('fecha').value = fecha;
+  if (fechaInput && fecha) {
+    fechaInput.value = fecha;
   }
-  sessionStorage.setItem('nombre', document.getElementById('nombre').value);
-  sessionStorage.setItem('fecha', document.getElementById('fecha').value);
+  countdown();
 }
+
+
 
 function establecerNombreYFecha() {
   const nombreGuardado = sessionStorage.getItem('nombre');
@@ -70,32 +73,26 @@ function establecerNombreYFecha() {
   }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', function() {
   establecerNombreYFecha();
   countdown();
 });
 
 document.getElementById('compartir').addEventListener('click', compartir);
-document.getElementById('nombre').addEventListener('input', () => {
+document.getElementById('nombre').addEventListener('input', function() {
   sessionStorage.setItem('nombre', document.getElementById('nombre').value);
 });
-document.getElementById('fecha').addEventListener('input', () => {
+document.getElementById('fecha').addEventListener('input', function() {
   sessionStorage.setItem('fecha', document.getElementById('fecha').value);
-})
+});
 
 const confirmPresenceInput = document.getElementById("confirm-presence");
 const confirmPresenceText = document.getElementById("confirm-presence-text");
 confirmPresenceInput.addEventListener("click", function() {
   if (confirmPresenceInput.checked) {
-    // input está activo, el invitado confirmó su presencia
-    confirmPresenceText.innerHTML = "Confirmado";
+     confirmPresenceText.innerHTML = "Confirmado";
   } else {
-    // input está inactivo, el invitado no confirmó su presencia
     confirmPresenceText.innerHTML = "Confirmá presencia";
   }
 });
-
-
-
-
 
