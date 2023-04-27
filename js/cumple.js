@@ -37,12 +37,10 @@ function compartir() {
   urlParams.set('nombre', nombreInput.value);
   urlParams.set('fecha', fechaInput.value);
   const url = window.location.href.split('?')[0] + '?' + urlParams.toString();
-  const mensaje = `¡No te pierdas la fiesta de cumpleaños de ${nombreInput.value} en Natatotio UP el ${fechaInput.value}!, ingresá acá: ${url}`;
+  const mensaje = `¡No te pierdas la fiesta de cumpleaños de ${nombreInput.value} en Natatotio UP el ${fechaInput.value}!, ingresá acá: ${encodeURIComponent(url)}`;
   const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(mensaje)}`;
   window.open(whatsappUrl);
 }
-
-
 function establecerDatosDesdeUrl() {
   const urlParams = new URLSearchParams(window.location.search);
   const nombre = urlParams.get('nombre');
@@ -54,6 +52,7 @@ function establecerDatosDesdeUrl() {
     fechaInput.value = fecha;
   }
   countdown();
+  
 }
 
 
@@ -71,6 +70,10 @@ function establecerNombreYFecha() {
   } else {
     document.getElementById('fecha').value = '';
   }
+}
+if (window.location.search) {
+  establecerDatosDesdeUrl();
+  establecerNombreYFecha();
 }
 
 document.addEventListener('DOMContentLoaded', function() {
