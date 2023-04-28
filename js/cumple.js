@@ -37,25 +37,35 @@ function compartir() {
   urlParams.set('nombre', nombreInput.value);
   urlParams.set('fecha', fechaInput.value);
   const url = window.location.href.split('?')[0] + '?' + urlParams.toString();
-  const mensaje = `¡No te pierdas la fiesta de cumpleaños de ${nombreInput.value} en Natatotio UP el ${fechaInput.value}!, ingresá acá: ${encodeURIComponent(url)}`;
-  const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(mensaje)}`;
-  window.open(whatsappUrl);
+  const mensaje = `¡No te pierdas la fiesta de cumpleaños de ${nombreInput.value} en Natatotio UP el ${fechaInput.value}! Abrí aquí:`;
+  const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(mensaje)}%0a${encodeURIComponent(url)}`;
+  window.open(whatsappUrl, "_blank");
+  sessionStorage.setItem('nombre', nombreInput.value);
+  sessionStorage.setItem('fecha', fechaInput.value);
 }
+
 function establecerDatosDesdeUrl() {
   const urlParams = new URLSearchParams(window.location.search);
   const nombre = urlParams.get('nombre');
   const fecha = urlParams.get('fecha');
+
+  // Si los datos no están en la URL, recuperarlos de localStorage
+  if (!nombre && !fecha) {
+    nombre = localStorage.getItem('nombre');
+    fecha = localStorage.getItem('fecha');
+  }
+
   if (nombreInput && nombre) {
     nombreInput.value = decodeURIComponent(nombre);
   }
   if (fechaInput && fecha) {
+    nombreInput.value = nombre;
     fechaInput.value = fecha;
+    countdown();
+    tarjeta.style.display = 'block';
   }
   countdown();
-  
 }
-
-
 
 function establecerNombreYFecha() {
   const nombreGuardado = sessionStorage.getItem('nombre');
